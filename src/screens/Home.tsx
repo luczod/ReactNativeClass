@@ -1,13 +1,23 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import { HeaderFlatBox } from "../components/HeaderFlat";
+// npx expo start --clear
 
 export function Home() {
+  function handlerClick() {
+    console.log("clicou");
+  }
   return (
-    <>
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500 font-semibold">Hello World</Text>
-        <Text> mais uma tentativa</Text>
+    <SafeAreaView>
+      <View className="m-10">
+        <HeaderFlatBox />
       </View>
-    </>
+      <TouchableOpacity
+        onPress={handlerClick}
+        className="bg-blue-500 mx-auto rounded-full w-28"
+      >
+        <Text className=" ml-3 p-3">clica aqui</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
