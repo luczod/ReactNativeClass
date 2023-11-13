@@ -12,7 +12,7 @@ interface ModalProps extends ModalPropsReact {
   onCloseModal: () => void;
 }
 
-const Modal = ({ title, text, onCloseModal, ...props }: ModalProps) => {
+export default function Modal({ title, text, onCloseModal, ...props }: ModalProps) {
   return (
     <ModalReact
       animationType="slide"
@@ -33,6 +33,4 @@ const Modal = ({ title, text, onCloseModal, ...props }: ModalProps) => {
       </ContainerModal>
     </ModalReact>
   );
-};
-
-export default Modal;
+}

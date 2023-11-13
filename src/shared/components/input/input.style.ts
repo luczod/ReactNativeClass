@@ -1,4 +1,4 @@
-import { Entypo } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 import { theme } from '../../themes/theme';
@@ -24,7 +24,7 @@ export const ContainerInput = styled.TextInput<ContainerInputProps>`
     props.isError ? theme.colors.orangeTheme.orange80 : theme.colors.grayTheme.gray80};
 `;
 
-export const IconEye = styled(Entypo)`
+export const IconEye = styled(FontAwesome5)`
   position: absolute;
   right: 16px;
   top: 12px;

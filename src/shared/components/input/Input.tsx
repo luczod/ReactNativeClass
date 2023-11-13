@@ -14,7 +14,7 @@ interface InputProps extends TextInputProps {
   margin?: string;
 }
 
-const Input = ({ margin, secureTextEntry, title, errorMessage }: InputProps) => {
+export default function Input({ margin, secureTextEntry, title, errorMessage }: InputProps) {
   const [currentSecure, setCurrentSecure] = useState<boolean>(!!secureTextEntry);
 
   const handleOnPressEye = () => {
@@ -42,8 +42,8 @@ const Input = ({ margin, secureTextEntry, title, errorMessage }: InputProps) => 
         {secureTextEntry && (
           <IconEye
             onPress={handleOnPressEye}
-            name={currentSecure ? 'eye-with-line' : 'eye'}
-            size={24}
+            name={currentSecure ? 'eye-slash' : 'eye'}
+            size={20}
             color="black"
           />
         )}
@@ -59,6 +59,4 @@ const Input = ({ margin, secureTextEntry, title, errorMessage }: InputProps) => 
       )}
     </DisplayFlexColumn>
   );
-};
-
-export default Input;
+}

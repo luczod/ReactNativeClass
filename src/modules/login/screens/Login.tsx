@@ -3,17 +3,39 @@ import { View } from 'react-native';
 import Button from '../../../shared/components/button/Button';
 import Input from '../../../shared/components/input/Input';
 import { theme } from '../../../shared/themes/theme';
-import { ContainerLogin } from '../styles/login.style';
+import { ContainerLogin, ImageLogo } from '../styles/login.style';
+import { useLogin } from '../hooks/useLogin';
 
-const Login = () => {
-  const handleOnPress = () => {
-    console.log('clicou');
-  };
+export default function Login() {
+  const {
+    email,
+    password,
+    loading,
+    errorMessage,
+    handleOnPress,
+    handleOnChangeEmail,
+    handleOnChangePassword,
+  } = useLogin();
   return (
     <View>
       <ContainerLogin>
-        <Input margin="0px 0px 8px 0px" placeholder="Digite seu email" title="Email:" />
-        <Input secureTextEntry placeholder="Digite sua senha" title="Senha:" />
+        <ImageLogo resizeMode="contain" source={require('../../../../assets/images/logo.png')} />
+        <Input
+          value={email}
+          errorMessage={errorMessage}
+          margin="0px 0px 8px 0px"
+          placeholder="Digite seu email"
+          title="Email:"
+          onChange={handleOnChangeEmail}
+        />
+        <Input
+          errorMessage={errorMessage}
+          value={password}
+          secureTextEntry
+          placeholder="Digite sua senha"
+          title="Senha:"
+          onChange={handleOnChangePassword}
+        />
         <Button
           type={theme.buttons.buttonsTheme.primary}
           margin="16px"
@@ -23,6 +45,4 @@ const Login = () => {
       </ContainerLogin>
     </View>
   );
-};
-
-export default Login;
+}

@@ -20,7 +20,7 @@ interface ButtonProps extends TouchableOpacityProps {
   onPress?: () => void;
 }
 
-const Button = ({ title, type, disabled, loading, margin, onPress }: ButtonProps) => {
+export default function Button({ title, type, disabled, loading, margin, onPress }: ButtonProps) {
   const handleOnPress = () => {
     if (!loading && !disabled && onPress) {
       onPress();
@@ -63,6 +63,4 @@ const Button = ({ title, type, disabled, loading, margin, onPress }: ButtonProps
         </ButtonContainer>
       );
   }
-};
-
-export default Button;
+}
