@@ -20,7 +20,7 @@ interface ButtonProps extends TouchableOpacityProps {
   onPress?: () => void;
 }
 
-const Button = ({ title, type, disabled, loading, margin, onPress, ...props }: ButtonProps) => {
+const Button = ({ title, type, disabled, loading, margin, onPress }: ButtonProps) => {
   const handleOnPress = () => {
     if (!loading && !disabled && onPress) {
       onPress();

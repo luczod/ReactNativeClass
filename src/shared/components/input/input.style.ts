@@ -1,3 +1,4 @@
+import { Entypo } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 import { theme } from '../../themes/theme';
@@ -23,8 +24,8 @@ export const ContainerInput = styled.TextInput<ContainerInputProps>`
     props.isError ? theme.colors.orangeTheme.orange80 : theme.colors.grayTheme.gray80};
 `;
 
-/* export const IconEye = styled(Icon)`
+export const IconEye = styled(Entypo)`
   position: absolute;
   right: 16px;
-  to p: 12px;
-`;*/
+  top: 12px;
+`;

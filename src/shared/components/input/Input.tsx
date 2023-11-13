@@ -5,7 +5,7 @@ import { theme } from '../../themes/theme';
 import { DisplayFlexColumn } from '../globalStyles/globalView.style';
 import Text from '../text/Text';
 import { textTypes } from '../text/textTypes';
-import { ContainerInput } from './input.style';
+import { ContainerInput, IconEye } from './input.style';
 
 interface InputProps extends TextInputProps {
   title?: string;
@@ -39,13 +39,14 @@ const Input = ({ margin, secureTextEntry, title, errorMessage }: InputProps) => 
           secureTextEntry={currentSecure}
           isError={!!errorMessage}
         />
-        {/*  {secureTextEntry && (
+        {secureTextEntry && (
           <IconEye
             onPress={handleOnPressEye}
-            name={currentSecure ? 'eye' : 'eye-blocked'}
-            size={20}
+            name={currentSecure ? 'eye-with-line' : 'eye'}
+            size={24}
+            color="black"
           />
-        )} */}
+        )}
       </View>
       {errorMessage && (
         <Text
