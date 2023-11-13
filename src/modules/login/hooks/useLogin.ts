@@ -1,22 +1,17 @@
-import { connectionAPIPost } from '../../../shared/functions/connection/connectionAPI';
 import { useState } from 'react';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { useRequest } from '../../../shared/hooks/useRequest';
 
 export function useLogin() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const { authRequest, errorMessage, loading, setErrorMessage } = useRequest();
 
   const handleOnPress = async () => {
-    setLoading(true);
-    await connectionAPIPost('http://192.168.18.152:8080/auth', {
+    authRequest({
       email,
       password,
-    }).catch(() => {
-      setErrorMessage('Usuário ou senha inválidos');
     });
-    setLoading(false);
   };
 
   const handleOnChangeEmail = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
