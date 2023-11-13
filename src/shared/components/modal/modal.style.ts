@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 import { theme } from '../../themes/theme';
-import { Icon } from '../icon/Icon';
+import { AntDesign } from '@expo/vector-icons';
 
 export const ContainerModal = styled.View`
   position: absolute;
@@ -24,7 +24,7 @@ export const ContainerModal = styled.View`
   elevation: 10;
 `;
 
-export const IconCloseModal = styled(Icon)`
+export const IconCloseModal = styled(AntDesign)`
   position: absolute;
   right: 24px;
   top: 24px;

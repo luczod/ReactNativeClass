@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserType } from '../../shared/types/userType';
+import { UserType } from '../../../shared/types/userType';
 
 interface UserStore {
   user?: UserType;
@@ -10,7 +10,7 @@ const initialState: UserStore = {
 };
 
 export const useSlice = createSlice({
-  name: 'counter',
+  name: 'userReducer',
   initialState,
   reducers: {
     setUserAction: (state, action: PayloadAction<UserType>) => {

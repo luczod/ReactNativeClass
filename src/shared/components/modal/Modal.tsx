@@ -29,7 +29,7 @@ export default function Modal({ title, text, onCloseModal, ...props }: ModalProp
         </Text>
         <Text>{text}</Text>
         <Button title="OK" onPress={onCloseModal} />
-        <IconCloseModal onPress={onCloseModal} name="cross" />
+        <IconCloseModal name="close" size={24} color="black" onPress={onCloseModal} />
       </ContainerModal>
     </ModalReact>
   );

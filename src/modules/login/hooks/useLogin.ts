@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 
 export function useLogin() {
-  const { user } = useSelector((state: RootState) => state.useReducer);
+  const { user } = useSelector((state: RootState) => state.userReducer);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { authRequest, errorMessage, loading, setErrorMessage } = useRequest();
