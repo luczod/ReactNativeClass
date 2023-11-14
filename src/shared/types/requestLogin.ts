@@ -1,4 +1,4 @@
-export interface RequestLogin {
+export type RequestLogin = {
   email: string;
   password: string;
-}
+};

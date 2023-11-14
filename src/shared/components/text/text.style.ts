@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
 
-interface ContainerTextProps {
+type ContainerTextProps = {
   color?: string;
   customMargin?: string;
   fontSize: string;
   fontFamily: 'Poppins_700Bold' | 'Poppins_300Light' | 'Poppins_600SemiBold' | 'Poppins_400Regular';
-}
+};
 
 export const ContainerText = styled.Text<ContainerTextProps>`
   ${(props) => (props.color ? `color: ${props.color};` : '')}

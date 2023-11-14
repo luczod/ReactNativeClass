@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 import { connectionAPIPost } from '../functions/connection/connectionAPI';
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer';
 import { RequestLogin } from '../types/requestLogin';

@@ -1,11 +1,11 @@
 import { useGlobalReducer } from '../../../../store/reducers/globalReducer/useGlobalReducer';
 import Modal from '../Modal';
 
-export interface GlobalModalType {
+export type GlobalModalType = {
   visible: boolean;
   title: string;
   text: string;
-}
+};
 
 export function GlobalModal() {
   const { modal, closeModal } = useGlobalReducer();

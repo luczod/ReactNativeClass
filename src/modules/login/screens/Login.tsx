@@ -6,7 +6,7 @@ import { theme } from '../../../shared/themes/theme';
 import { ContainerLogin, ImageLogo } from '../styles/login.style';
 import { useLogin } from '../hooks/useLogin';
 
-export default function Login() {
+export default function Login({ navigation }) {
   const {
     email,
     password,
@@ -16,6 +16,7 @@ export default function Login() {
     handleOnChangeEmail,
     handleOnChangePassword,
   } = useLogin();
+
   return (
     <View>
       <ContainerLogin>
@@ -40,7 +41,7 @@ export default function Login() {
           type={theme.buttons.buttonsTheme.primary}
           margin="16px"
           title="ENTRAR"
-          onPress={handleOnPress}
+          onPress={() => navigation.navigate('Home')}
         />
       </ContainerLogin>
     </View>
