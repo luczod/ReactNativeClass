@@ -41,7 +41,7 @@ export default function Login({ navigation }) {
           type={theme.buttons.buttonsTheme.primary}
           margin="16px"
           title="ENTRAR"
-          onPress={() => navigation.navigate('Home')}
+          onPress={handleOnPress}
         />
       </ContainerLogin>
     </View>
