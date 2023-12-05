@@ -19,14 +19,18 @@ export default class ConnectionAPI {
   }
 
   static async connect<T>(url: string, method: MethodType, body?: unknown): Promise<T> {
+    console.log(body);
+
     return this.call<T>(url, method, body).catch((error) => {
       if (error.response) {
+        // console.log(error.response.data);
+
         switch (error.response.status) {
           case 401:
           case 403:
             throw new Error('Sem permissão');
           default:
-            throw new Error('Sem conexão com a internet');
+            throw new Error('Sem conexão com a internet 2');
         }
       }
       throw new Error('Sem conexão com a internet');

@@ -39,6 +39,7 @@ export default function Login({ navigation }) {
         />
         <Button
           type={theme.buttons.buttonsTheme.primary}
+          loading={loading}
           margin="16px"
           title="ENTRAR"
           onPress={handleOnPress}

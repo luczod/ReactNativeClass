@@ -15,10 +15,7 @@ export const ContainerModal = styled.View`
   z-index: 9;
 
   shadow-color: ${theme.colors.neutralTheme.black};
-  shadow-offset: {
-    width: 0;
-    height: 0;
-  }
+  shadow-offset: 0 0;
   shadow-radius: 2px;
   elevation: 20;
 `;

@@ -20,8 +20,6 @@ export const useRequest = () => {
 
     await connectionAPIPost<ReturnLogin>('http://192.168.100.7:3000/auth', body)
       .then((result) => {
-        console.log(result);
-
         setAuthorizatinToken(result.accessToken);
         setUser(result.user);
         reset({
@@ -29,7 +27,8 @@ export const useRequest = () => {
           routes: [{ name: MenuUrl.HOME }],
         });
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err.message);
         setModal({
           visible: true,
           title: 'Erro',

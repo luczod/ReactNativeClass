@@ -14,7 +14,13 @@ interface InputProps extends TextInputProps {
   margin?: string;
 }
 
-export default function Input({ margin, secureTextEntry, title, errorMessage }: InputProps) {
+export default function Input({
+  margin,
+  secureTextEntry,
+  title,
+  errorMessage,
+  ...props
+}: InputProps) {
   const [currentSecure, setCurrentSecure] = useState<boolean>(!!secureTextEntry);
 
   const handleOnPressEye = () => {
@@ -38,6 +44,7 @@ export default function Input({ margin, secureTextEntry, title, errorMessage }: 
           hasSecureTextEntry={secureTextEntry}
           secureTextEntry={currentSecure}
           isError={!!errorMessage}
+          {...props}
         />
         {secureTextEntry && (
           <IconEye
