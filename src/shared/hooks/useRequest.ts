@@ -7,6 +7,7 @@ import { ReturnLogin } from '../types/returnLogin';
 import { useUserReducer } from '../../store/reducers/useReducer/useUserReducer';
 import { MenuUrl } from '../enums/MuneUrl.enum';
 import { setAuthorizatinToken } from '../functions/connection/auth';
+import { URL_AUTH } from '../constants/urls';
 
 export const useRequest = () => {
   const { reset } = useNavigation<NavigationProp<ParamListBase>>();
@@ -18,7 +19,7 @@ export const useRequest = () => {
   const authRequest = async (body: RequestLogin) => {
     setLoading(true);
 
-    await connectionAPIPost<ReturnLogin>('http://192.168.100.7:3000/auth', body)
+    await connectionAPIPost<ReturnLogin>(URL_AUTH, body)
       .then((result) => {
         setAuthorizatinToken(result.accessToken);
         setUser(result.user);

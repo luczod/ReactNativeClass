@@ -16,7 +16,7 @@ export const ContainerModal = styled.View`
 
   shadow-color: ${theme.colors.neutralTheme.black};
   shadow-offset: 0 0;
-  shadow-radius: 2px;
+  shadow-radius: 8px;
   elevation: 20;
 `;
 

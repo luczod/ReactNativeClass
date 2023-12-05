@@ -6,4 +6,4 @@ export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATIN_KEY)
 export const setAuthorizatinToken = async (token: string) =>
   setItemStorage(AUTHORIZATIN_KEY, token);
 
-export const getAuthorizatinToken = async () => getItemStorage(AUTHORIZATIN_KEY);
+export const getAuthorizationToken = async () => getItemStorage(AUTHORIZATIN_KEY);
