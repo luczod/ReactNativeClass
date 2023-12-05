@@ -2,7 +2,7 @@ import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/
 import { useEffect } from 'react';
 
 import { MethodEnum } from '../../../enums/methods.enum';
-import { URL_USER } from '../../../shared/constants/urls';
+import { URL_AUTH, URL_USER } from '../../../shared/constants/urls';
 
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { ContainerSplash, ImagelogoSplash } from '../styles/splash.style';
@@ -36,7 +36,6 @@ const Splash = () => {
     };
 
     verifyLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

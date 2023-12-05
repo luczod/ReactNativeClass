@@ -35,7 +35,7 @@ export const useRequest = () => {
     message,
   }: requestProps<T>): Promise<T | undefined> => {
     setLoading(true);
-    const returnObject: T | undefined = await ConnectionAPI.connect<T>(url, method, body)
+    const returnObject: T | undefined = await ConnectionAPI.call<T>(url, method, body)
       .then((result) => {
         if (saveGlobal) {
           saveGlobal(result);
@@ -75,7 +75,7 @@ export const useRequest = () => {
         });
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
         setModal({
           visible: true,
           title: 'Erro',
