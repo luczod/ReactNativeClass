@@ -26,8 +26,8 @@ export default function Input({ margin, secureTextEntry, title, errorMessage }: 
       {title && (
         <Text
           margin="0px 0px 4px 8px"
-          color={theme.colors.grayTheme.gray100}
-          type={textTypes.PARAGRAPH_SMALL_SEMI_BOLD}
+          color={theme.colors.neutralTheme.black}
+          type={textTypes.PARAGRAPH_BOLD}
         >
           {title}
         </Text>

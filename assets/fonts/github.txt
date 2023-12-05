@@ -15,16 +15,19 @@ Este comando mostrará uma lista mais detalhada, incluindo autor, data e a mensa
 
 Lembre-se de que esses comandos mostrarão os commits do branch atual. Se você estiver interessado em ver os commits de outros branches ou de todos os branches, pode precisar ajustar os comandos conforme necessário.
 
-https://github.com/juliossena/vendas-online-app/commit/4ea6efce7795d84f9670dc43c4f01bb03988c5c1
+https://github.com/juliossena/vendas-online-app/commit/9775d8d2bc69be69a53245b7914e4378764a9551
+https://github.com/juliossena/vendas-online-backend/commit/30cd444c06637d0c0ef8b9668971b0b9566c1811
 
 git checkout <commit-id> .
 mistura tudo
 
 git checkout <commit-id>
 voltar o codigo para a vesão desse commit,detached HEAD' state.
-git switch -c <new-branch-name> 
+git switch -c <new-branch-name>
 criar uma nova branch com a versão desse commit
 
 git switch -
 boltar para a ultima versão
 
+git log --oneline --since="2023-02-02" --until="2023-02-04"
+range of dates

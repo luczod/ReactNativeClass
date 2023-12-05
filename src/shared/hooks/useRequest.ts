@@ -6,6 +6,7 @@ import { RequestLogin } from '../types/requestLogin';
 import { ReturnLogin } from '../types/returnLogin';
 import { useUserReducer } from '../../store/reducers/useReducer/useUserReducer';
 import { MenuUrl } from '../enums/MuneUrl.enum';
+import { setAuthorizatinToken } from '../functions/connection/auth';
 
 export const useRequest = () => {
   const { reset } = useNavigation<NavigationProp<ParamListBase>>();
@@ -16,13 +17,17 @@ export const useRequest = () => {
 
   const authRequest = async (body: RequestLogin) => {
     setLoading(true);
-    reset({
-      index: 0,
-      routes: [{ name: MenuUrl.HOME }],
-    });
-    await connectionAPIPost<ReturnLogin>('http://192.168.18.152:8080/auth', body)
+
+    await connectionAPIPost<ReturnLogin>('http://192.168.100.7:3000/auth', body)
       .then((result) => {
+        console.log(result);
+
+        setAuthorizatinToken(result.accessToken);
         setUser(result.user);
+        reset({
+          index: 0,
+          routes: [{ name: MenuUrl.HOME }],
+        });
       })
       .catch(() => {
         setModal({

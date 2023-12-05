@@ -19,9 +19,8 @@ export const ContainerModal = styled.View`
     width: 0;
     height: 0;
   }
-  shadow-opacity: 1;
-  shadow-radius: 1px;
-  elevation: 10;
+  shadow-radius: 2px;
+  elevation: 20;
 `;
 
 export const IconCloseModal = styled(AntDesign)`

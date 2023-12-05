@@ -25,9 +25,9 @@ export default function Login({ navigation }) {
           value={email}
           errorMessage={errorMessage}
           margin="0px 0px 8px 0px"
-          placeholder="Digite seu email"
           title="Email:"
           onChange={handleOnChangeEmail}
+          placeholder="Digite seu email"
         />
         <Input
           errorMessage={errorMessage}
