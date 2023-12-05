@@ -5,7 +5,7 @@ import { theme } from '../../../shared/themes/theme';
 export const ContainerLogin = styled.View`
   height: 100%;
   width: 100%;
-  background-color: ${theme.colors.neutralTheme.white};
+  background-color: ${theme.colors.neutralTheme.zinc};
   justify-content: center;
   align-items: center;
   padding: 16px;
