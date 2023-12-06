@@ -9,6 +9,7 @@ import { useRequest } from '../../../shared/hooks/useRequest';
 import { CreateUserType } from '../../../shared/types/createUserType';
 import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
 import { isValuesEmpty } from '../../../shared/functions/utils';
+import { insertMaskInCpf, insertMaskInPhone } from '../../../shared/functions/utils/masks';
 
 export function useCreateUser() {
   const [disable, setDisable] = useState<boolean>(true);

@@ -22,6 +22,7 @@ export function CreateUser() {
         onChange={(event) => handleOnChangeInput(event, 'phone')}
         margin="0px 0px 16px 0px"
         placeholder="Digite"
+        mask="cellphone"
         title="Telefone:"
       />
       <Input
@@ -36,6 +37,7 @@ export function CreateUser() {
         onChange={(event) => handleOnChangeInput(event, 'cpf')}
         margin="0px 0px 16px 0px"
         placeholder="Digite"
+        mask="cpf"
         title="CPF:"
       />
       <Input
