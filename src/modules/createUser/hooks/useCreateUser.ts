@@ -8,8 +8,14 @@ import { URL_USER } from '../../../shared/constants/urls';
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { CreateUserType } from '../../../shared/types/createUserType';
 import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
-import { isValuesEmpty } from '../../../shared/functions/utils';
+import {
+  isValuesEmpty,
+  validateCpf,
+  validateEmail,
+  validatePhone,
+} from '../../../shared/functions/utils';
 import { insertMaskInCpf, insertMaskInPhone } from '../../../shared/functions/utils/masks';
+import { removeSpecialChar } from '../../../shared/functions/utils/characters';
 
 export function useCreateUser() {
   const [disable, setDisable] = useState<boolean>(true);
@@ -27,6 +33,12 @@ export function useCreateUser() {
   useEffect(() => {
     if (isValuesEmpty(createUser)) {
       setDisable(true);
+    } else if (
+      validatePhone(createUser.phone) &&
+      validateEmail(createUser.email) &&
+      validateCpf(createUser.cpf)
+    ) {
+      setDisable(true);
     } else {
       setDisable(false);
     }
@@ -36,7 +48,11 @@ export function useCreateUser() {
     const resultCreateUser = await request({
       url: URL_USER,
       method: MethodEnum.POST,
-      body: createUser,
+      body: {
+        ...createUser,
+        phone: removeSpecialChar(createUser.phone),
+        cpf: removeSpecialChar(createUser.cpf),
+      },
       message: 'Usuário cadastrado com sucesso!',
     });
 
