@@ -38,10 +38,10 @@ export default class ConnectionAPI {
           case 403:
             throw new Error('Sem permissão');
           default:
-            throw new Error('Sem conexão com a internet 2');
+            throw new Error(error.response.message);
         }
       }
-      throw new Error('Sem conexão com o backend');
+      throw new Error(error.response.message || 'Sem conexão com o backend');
     });
   }
 }

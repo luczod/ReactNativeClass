@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Button from '../../../shared/components/button/Button';
 import Input from '../../../shared/components/input/Input';
 import { ImageLogo } from '../../login/styles/login.style';
@@ -5,7 +6,7 @@ import { useCreateUser } from '../hooks/useCreateUser';
 import { CreateUserContainer } from '../styles/createUser.style';
 
 export function CreateUser() {
-  const { createUser, loading, handleOnChangeInput, handleCreateUser } = useCreateUser();
+  const { createUser, disable, loading, handleOnChangeInput, handleCreateUser } = useCreateUser();
   return (
     <CreateUserContainer>
       <ImageLogo resizeMode="contain" source={require('../../../../assets/images/logo.png')} />
@@ -54,6 +55,7 @@ export function CreateUser() {
         title="Confirmar senha:"
       />
       <Button
+        disabled={disable}
         onPress={handleCreateUser}
         loading={loading}
         margin="0px 0px 32px 0px"

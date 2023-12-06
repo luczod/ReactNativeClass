@@ -1,5 +1,5 @@
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native/types';
 
 import { MethodEnum } from '../../../enums/methods.enum';
@@ -8,8 +8,10 @@ import { URL_USER } from '../../../shared/constants/urls';
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { CreateUserType } from '../../../shared/types/createUserType';
 import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
+import { isValuesEmpty } from '../../../shared/functions/utils';
 
-export const useCreateUser = () => {
+export function useCreateUser() {
+  const [disable, setDisable] = useState<boolean>(true);
   const { reset } = useNavigation<NavigationProp<ParamListBase>>();
   const { request, loading } = useRequest();
   const [createUser, setCreateUser] = useState<CreateUserType>({
@@ -20,6 +22,14 @@ export const useCreateUser = () => {
     password: '',
     phone: '',
   });
+
+  useEffect(() => {
+    if (isValuesEmpty(createUser)) {
+      setDisable(true);
+    } else {
+      setDisable(false);
+    }
+  }, [createUser]);
 
   const handleCreateUser = async () => {
     const resultCreateUser = await request({
@@ -50,7 +60,8 @@ export const useCreateUser = () => {
   return {
     createUser,
     loading,
+    disable,
     handleOnChangeInput,
     handleCreateUser,
   };
-};
+}
