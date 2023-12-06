@@ -2,7 +2,7 @@ import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/
 import { useEffect } from 'react';
 
 import { MethodEnum } from '../../../enums/methods.enum';
-import { URL_AUTH, URL_USER } from '../../../shared/constants/urls';
+import { URL_USER } from '../../../shared/constants/urls';
 
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { ContainerSplash, ImagelogoSplash } from '../styles/splash.style';
@@ -11,7 +11,7 @@ import { useUserReducer } from '../../../store/reducers/useReducer/useUserReduce
 import { UserType } from '../../../shared/types/userType';
 import { getAuthorizationToken } from '../../../shared/functions/connection/auth';
 
-const TIME_SLEEP = 5000;
+const TIME_SLEEP = 3000;
 
 const Splash = () => {
   const { reset } = useNavigation<NavigationProp<ParamListBase>>();
