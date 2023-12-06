@@ -1,5 +1,11 @@
-import { useState } from 'react';
-import { NativeSyntheticEvent, TextInputChangeEventData, TextInputProps, View } from 'react-native';
+import { useState, forwardRef } from 'react';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputProps,
+  View,
+} from 'react-native';
 
 import { theme } from '../../themes/theme';
 import { DisplayFlexColumn } from '../globalStyles/globalView.style';
@@ -16,84 +22,81 @@ interface InputProps extends TextInputProps {
   mask?: 'cellphone' | 'cpf';
 }
 
-export default function Input({
-  margin,
-  secureTextEntry,
-  title,
-  errorMessage,
-  onChange,
-  mask,
-  ...props
-}: InputProps) {
-  const [currentSecure, setCurrentSecure] = useState<boolean>(!!secureTextEntry);
+const Input = forwardRef<TextInput, InputProps>(
+  ({ margin, secureTextEntry, title, errorMessage, onChange, mask, ...props }: InputProps, ref) => {
+    const [currentSecure, setCurrentSecure] = useState<boolean>(!!secureTextEntry);
 
-  const handleOnChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
-    if (onChange) {
-      let text = event.nativeEvent.text;
-      switch (mask) {
-        case 'cpf':
-          text = insertMaskInCpf(text);
-          break;
-        case 'cellphone':
-          text = insertMaskInPhone(text);
-          break;
-        default:
-          text = event.nativeEvent.text;
-          break;
+    const handleOnChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+      if (onChange) {
+        let text = event.nativeEvent.text;
+        switch (mask) {
+          case 'cpf':
+            text = insertMaskInCpf(text);
+            break;
+          case 'cellphone':
+            text = insertMaskInPhone(text);
+            break;
+          default:
+            text = event.nativeEvent.text;
+            break;
+        }
+
+        onChange({
+          ...event,
+          nativeEvent: {
+            ...event.nativeEvent,
+            text,
+          },
+        });
       }
+    };
 
-      onChange({
-        ...event,
-        nativeEvent: {
-          ...event.nativeEvent,
-          text,
-        },
-      });
-    }
-  };
+    const handleOnPressEye = () => {
+      setCurrentSecure((current) => !current);
+    };
 
-  const handleOnPressEye = () => {
-    setCurrentSecure((current) => !current);
-  };
-
-  return (
-    <DisplayFlexColumn customMargin={margin}>
-      {title && (
-        <Text
-          margin="0px 0px 4px 8px"
-          color={theme.colors.neutralTheme.black}
-          type={textTypes.PARAGRAPH_BOLD}
-        >
-          {title}
-        </Text>
-      )}
-
-      <View>
-        <ContainerInput
-          {...props}
-          hasSecureTextEntry={secureTextEntry}
-          secureTextEntry={currentSecure}
-          isError={!!errorMessage}
-          onChange={handleOnChange}
-        />
-        {secureTextEntry && (
-          <IconEye
-            onPress={handleOnPressEye}
-            name={currentSecure ? 'eye-slash' : 'eye'}
-            size={20}
-            color="black"
-          />
+    return (
+      <DisplayFlexColumn customMargin={margin}>
+        {title && (
+          <Text
+            margin="0px 0px 4px 8px"
+            color={theme.colors.neutralTheme.black}
+            type={textTypes.PARAGRAPH_BOLD}
+          >
+            {title}
+          </Text>
         )}
-      </View>
-      {errorMessage && (
-        <Text
-          margin="0px 0px 0px 8px"
-          type={textTypes.PARAGRAPH_SMALL_SEMI_BOLD}
-          color={theme.colors.orangeTheme.orange80}
-        >
-          {errorMessage}
-        </Text>
-      )}
-    </DisplayFlexColumn>
-  );
-}
+
+        <View>
+          <ContainerInput
+            {...props}
+            hasSecureTextEntry={secureTextEntry}
+            secureTextEntry={currentSecure}
+            isError={!!errorMessage}
+            onChange={handleOnChange}
+            ref={ref}
+          />
+          {secureTextEntry && (
+            <IconEye
+              onPress={handleOnPressEye}
+              name={currentSecure ? 'eye-slash' : 'eye'}
+              size={20}
+              color="black"
+            />
+          )}
+        </View>
+        {errorMessage && (
+          <Text
+            margin="0px 0px 0px 8px"
+            type={textTypes.PARAGRAPH_SMALL_SEMI_BOLD}
+            color={theme.colors.orangeTheme.orange80}
+          >
+            {errorMessage}
+          </Text>
+        )}
+      </DisplayFlexColumn>
+    );
+  },
+);
+
+export default Input;

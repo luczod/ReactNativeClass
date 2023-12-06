@@ -14,7 +14,6 @@ import {
   validateEmail,
   validatePhone,
 } from '../../../shared/functions/utils';
-import { insertMaskInCpf, insertMaskInPhone } from '../../../shared/functions/utils/masks';
 import { removeSpecialChar } from '../../../shared/functions/utils/characters';
 
 export function useCreateUser() {
