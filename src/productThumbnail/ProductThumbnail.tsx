@@ -8,14 +8,35 @@ import { ProductType } from '../shared/types/productType';
 import { ProductImg, ProductInsertCart, ProductThumbnailContaienr } from './productThumbnail.style';
 import { ProductNavigationProp } from '../modules/product/screens/Product';
 import { MenuUrl } from '../shared/enums/MuneUrl.enum';
+import { useRequest } from '../shared/hooks/useRequest';
+import { URL_CART } from '../shared/constants/urls';
+import { MethodEnum } from '../enums/methods.enum';
+import { ActivityIndicator } from 'react-native';
+import { CartRequest } from '../shared/types/cartRequest';
 
 interface IProps {
   product: ProductType;
   margin?: string;
 }
 
+const AMOUNT_DEFAULT = 1;
+
 export function ProductThumbnail({ product, margin }: IProps) {
   const { navigate } = useNavigation<ProductNavigationProp>();
+  const { request, loading } = useRequest();
+
+  function handleInsertProductInCart() {
+    request<unknown, CartRequest>({
+      url: URL_CART,
+      method: MethodEnum.POST,
+      body: {
+        productId: product.id,
+        amount: AMOUNT_DEFAULT,
+      },
+      message: 'Inserido com sucesso!',
+    });
+  }
+
   function handleGoToProduct() {
     navigate(MenuUrl.PRODUCT, { product });
   }
@@ -26,8 +47,12 @@ export function ProductThumbnail({ product, margin }: IProps) {
       <Text color={theme.colors.mainTheme.primary} type={textTypes.PARAGRAPH_SEMI_BOLD}>
         {toMoney.format(product.price)}
       </Text>
-      <ProductInsertCart>
-        <AntDesign name="shoppingcart" size={18} color="#fff" />
+      <ProductInsertCart onPress={handleInsertProductInCart}>
+        {loading ? (
+          <ActivityIndicator color={theme.colors.neutralTheme.white} />
+        ) : (
+          <AntDesign name="shoppingcart" size={18} color={theme.colors.neutralTheme.white} />
+        )}
       </ProductInsertCart>
     </ProductThumbnailContaienr>
   );
