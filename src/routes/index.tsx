@@ -2,14 +2,14 @@ import { NavigationContainer, ParamListBase, RouteProp } from '@react-navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
-import { MenuUrl } from './shared/enums/MuneUrl.enum';
-import CreateUser from './modules/createUser';
-import Login from './modules/login';
-import Home from './modules/home';
-import Splash from './modules/splash';
-import { theme } from './shared/themes/theme';
-import Orders from './modules/orders';
-import Profile from './modules/profile';
+import { MenuUrl } from '../shared/enums/MuneUrl.enum';
+import CreateUser from '../modules/createUser';
+import Login from '../modules/login';
+import Home from '../modules/home';
+import Splash from '../modules/splash';
+import { theme } from '../shared/themes/theme';
+import Orders from '../modules/orders';
+import Profile from '../modules/profile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
