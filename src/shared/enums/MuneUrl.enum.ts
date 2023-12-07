@@ -1,6 +1,6 @@
 export enum MenuUrl {
   SPLASH = 'Splash',
   LOGIN = 'Login',
-  HOME = 'Home',
+  HOME = 'Inital',
   CREATE_USER = 'CreateUser',
 }
