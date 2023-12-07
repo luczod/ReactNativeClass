@@ -10,25 +10,33 @@ import Splash from '../modules/splash';
 import { theme } from '../shared/themes/theme';
 import Orders from '../modules/orders';
 import Profile from '../modules/profile';
+import { Product } from '../modules/product/screens/Product';
+import { Cart } from '../modules/cart/screens/Cart';
+
+type AntDesignName = React.ComponentProps<typeof AntDesign>['name'];
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
-type AntDesignName = React.ComponentProps<typeof AntDesign>['name'];
 
 function TabNavigation() {
   const renderTabBarIcon = (color: string, route: RouteProp<ParamListBase, string>) => {
     let iconName: AntDesignName;
 
     switch (route.name) {
-      case 'Home':
+      case MenuUrl.HOME:
         iconName = 'home';
         break;
-      case 'Orders':
+      case MenuUrl.ORDER:
+        iconName = 'doubleright';
+        break;
+      case MenuUrl.CART:
         iconName = 'shoppingcart';
         break;
-      default:
+      case MenuUrl.PROFILE:
         iconName = 'profile';
+        break;
+      default:
+        iconName = 'caretup';
         break;
     }
 
@@ -50,9 +58,10 @@ function TabNavigation() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Orders" component={Orders} options={{ title: 'Pedidos' }} />
-      <Tab.Screen name="Profile" component={Profile} options={{ title: 'Perfil' }} />
+      <Tab.Screen name={MenuUrl.HOME} component={Home} />
+      <Tab.Screen name={MenuUrl.ORDER} component={Orders} options={{ title: 'Pedidos' }} />
+      <Tab.Screen name={MenuUrl.PROFILE} component={Profile} options={{ title: 'Perfil' }} />
+      <Tab.Screen name={MenuUrl.CART} component={Cart} options={{ title: 'Carrinho' }} />
     </Tab.Navigator>
   );
 }
@@ -63,6 +72,7 @@ export default function Routes() {
       <Stack.Navigator>
         <Stack.Screen name={MenuUrl.SPLASH} component={Splash} options={{ headerShown: false }} />
         <Stack.Screen name={MenuUrl.LOGIN} component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name={MenuUrl.PRODUCT} component={Product} />
         <Stack.Screen
           name={MenuUrl.CREATE_USER}
           component={CreateUser}
