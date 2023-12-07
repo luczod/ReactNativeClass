@@ -42,7 +42,7 @@ const Splash = () => {
       if (returnUser) {
         reset({
           index: 0,
-          routes: [{ name: MenuUrl.HOME }],
+          routes: [{ name: MenuUrl.TABBOTTOM }],
         });
       } else {
         reset({

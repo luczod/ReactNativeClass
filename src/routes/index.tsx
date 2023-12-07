@@ -79,7 +79,7 @@ export default function Routes() {
           options={{ title: 'Criar usuário' }}
         />
         <Stack.Screen
-          name={MenuUrl.HOME}
+          name={MenuUrl.TABBOTTOM}
           component={TabNavigation}
           options={{ headerShown: false }}
         />

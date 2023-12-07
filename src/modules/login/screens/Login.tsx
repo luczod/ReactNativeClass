@@ -31,6 +31,7 @@ export default function Login({ navigation }) {
           title="Email:"
           onChange={handleOnChangeEmail}
           placeholder="Digite seu email"
+          keyboardType="email-address"
         />
         <Input
           errorMessage={errorMessage}

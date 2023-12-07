@@ -71,7 +71,7 @@ export const useRequest = () => {
         setUser(result.user);
         reset({
           index: 0,
-          routes: [{ name: MenuUrl.HOME }],
+          routes: [{ name: MenuUrl.TABBOTTOM }],
         });
       })
       .catch((err) => {
