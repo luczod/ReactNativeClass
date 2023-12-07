@@ -1,7 +1,7 @@
 import { ParamListBase, useNavigation, NavigationProp } from '@react-navigation/native';
 import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import { useEffect } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import Text from '../../../shared/components/text/Text';
 import { useRequest } from '../../../shared/hooks/useRequest';
 
@@ -11,6 +11,7 @@ import { MethodEnum } from '../../../enums/methods.enum';
 
 import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
 import { ProductNavigationProp } from '../../product/screens/Product';
+import { ProductThumbnail } from '../../../productThumbnail/ProductThumbnail';
 
 export default function Home() {
   const { navigate } = useNavigation<ProductNavigationProp>();
@@ -33,11 +34,13 @@ export default function Home() {
 
   return (
     <View>
-      {products.map((product) => (
-        <TouchableOpacity key={product.id} onPress={() => handleGoToProduct(product)}>
-          <Text>{product.name}</Text>
-        </TouchableOpacity>
-      ))}
+      <FlatList
+        horizontal
+        data={products}
+        renderItem={({ item }) => (
+          <ProductThumbnail key={item.id} margin="0px 8px" product={item} />
+        )}
+      />
     </View>
   );
 }
