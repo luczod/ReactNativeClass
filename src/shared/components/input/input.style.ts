@@ -24,7 +24,7 @@ export const ContainerInput = styled.TextInput<ContainerInputProps>`
     props.isError ? theme.colors.orangeTheme.orange80 : theme.colors.grayTheme.gray80};
 `;
 
-export const IconEye = styled(FontAwesome5)`
+export const IconRight = styled(FontAwesome5)`
   position: absolute;
   right: 16px;
   top: 12px;

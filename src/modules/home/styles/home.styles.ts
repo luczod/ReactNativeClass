@@ -6,3 +6,7 @@ export const ContainerHome = styled.View`
   justify-content: center;
   background-color: whitesmoke;
 `;
+
+export const DivInput = styled.View`
+  padding: 8px;
+`;

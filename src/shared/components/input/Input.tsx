@@ -11,19 +11,34 @@ import { theme } from '../../themes/theme';
 import { DisplayFlexColumn } from '../globalStyles/globalView.style';
 import Text from '../text/Text';
 import { textTypes } from '../text/textTypes';
-import { ContainerInput, IconEye } from './input.style';
+import { ContainerInput, IconRight } from './input.style';
 import { insertMaskInCpf, insertMaskInPhone } from '../../functions/utils/masks';
 
 interface InputProps extends TextInputProps {
   title?: string;
   errorMessage?: string;
   secureTextEntry?: boolean;
+  searchType?: boolean;
+  onPressIconRight?: () => void;
   margin?: string;
   mask?: 'cellphone' | 'cpf';
 }
 
 const Input = forwardRef<TextInput, InputProps>(
-  ({ margin, secureTextEntry, title, errorMessage, onChange, mask, ...props }: InputProps, ref) => {
+  (
+    {
+      margin,
+      secureTextEntry,
+      searchType,
+      onPressIconRight,
+      title,
+      errorMessage,
+      onChange,
+      mask,
+      ...props
+    }: InputProps,
+    ref,
+  ) => {
     const [currentSecure, setCurrentSecure] = useState<boolean>(!!secureTextEntry);
 
     const handleOnChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -77,12 +92,16 @@ const Input = forwardRef<TextInput, InputProps>(
             ref={ref}
           />
           {secureTextEntry && (
-            <IconEye
+            <IconRight
               onPress={handleOnPressEye}
               name={currentSecure ? 'eye-slash' : 'eye'}
               size={20}
               color="black"
             />
+          )}
+
+          {searchType && (
+            <IconRight onPress={onPressIconRight} name="search" size={20} color="black" />
           )}
         </View>
         {errorMessage && (

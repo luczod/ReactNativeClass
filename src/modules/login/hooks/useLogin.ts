@@ -3,7 +3,7 @@ import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
+import { MenuUrl } from '../../../shared/enums/MenuUrl.enum';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 export function useLogin() {

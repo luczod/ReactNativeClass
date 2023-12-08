@@ -7,7 +7,7 @@ import { theme } from '../shared/themes/theme';
 import { ProductType } from '../shared/types/productType';
 import { ProductImg, ProductInsertCart, ProductThumbnailContaienr } from './productThumbnail.style';
 import { ProductNavigationProp } from '../modules/product/screens/Product';
-import { MenuUrl } from '../shared/enums/MuneUrl.enum';
+import { MenuUrl } from '../shared/enums/MenuUrl.enum';
 import { useRequest } from '../shared/hooks/useRequest';
 import { URL_CART } from '../shared/constants/urls';
 import { MethodEnum } from '../enums/methods.enum';

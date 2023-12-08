@@ -7,7 +7,7 @@ import { URL_USER } from '../../../shared/constants/urls';
 
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { CreateUserType } from '../../../shared/types/createUserType';
-import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
+import { MenuUrl } from '../../../shared/enums/MenuUrl.enum';
 import {
   isValuesEmpty,
   validateCpf,

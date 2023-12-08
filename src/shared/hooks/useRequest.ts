@@ -8,7 +8,7 @@ import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalRe
 import { RequestLogin } from '../types/requestLogin';
 import { ReturnLogin } from '../types/returnLogin';
 import { useUserReducer } from '../../store/reducers/useReducer/useUserReducer';
-import { MenuUrl } from '../enums/MuneUrl.enum';
+import { MenuUrl } from '../enums/MenuUrl.enum';
 import { setAuthorizatinToken } from '../functions/connection/auth';
 import { URL_AUTH } from '../constants/urls';
 
@@ -33,7 +33,7 @@ export const useRequest = () => {
     saveGlobal,
     body,
     message,
-  }: requestProps<T | undefined, B>): Promise<T | undefined> => {
+  }: requestProps<T, B>): Promise<T | undefined> => {
     setLoading(true);
     const returnObject: T | undefined = await ConnectionAPI.call<T, B>(url, method, body)
       .then((result) => {

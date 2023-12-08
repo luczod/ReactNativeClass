@@ -2,7 +2,7 @@ import { NavigationContainer, ParamListBase, RouteProp } from '@react-navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
-import { MenuUrl } from '../shared/enums/MuneUrl.enum';
+import { MenuUrl } from '../shared/enums/MenuUrl.enum';
 import CreateUser from '../modules/createUser';
 import Login from '../modules/login';
 import Home from '../modules/home';
@@ -12,6 +12,7 @@ import Orders from '../modules/orders';
 import Profile from '../modules/profile';
 import { Product } from '../modules/product/screens/Product';
 import { Cart } from '../modules/cart/screens/Cart';
+import SearchProduct from '../modules/searchProduct';
 
 type AntDesignName = React.ComponentProps<typeof AntDesign>['name'];
 
@@ -28,6 +29,9 @@ function TabNavigation() {
         break;
       case MenuUrl.ORDER:
         iconName = 'doubleright';
+        break;
+      case MenuUrl.SEARCH_PRODUCT:
+        iconName = 'search1';
         break;
       case MenuUrl.CART:
         iconName = 'shoppingcart';
@@ -60,6 +64,11 @@ function TabNavigation() {
     >
       <Tab.Screen name={MenuUrl.HOME} component={Home} />
       <Tab.Screen name={MenuUrl.ORDER} component={Orders} options={{ title: 'Pedidos' }} />
+      <Tab.Screen
+        name={MenuUrl.SEARCH_PRODUCT}
+        component={SearchProduct}
+        options={{ title: 'Buscar' }}
+      />
       <Tab.Screen name={MenuUrl.PROFILE} component={Profile} options={{ title: 'Perfil' }} />
       <Tab.Screen name={MenuUrl.CART} component={Cart} options={{ title: 'Carrinho' }} />
     </Tab.Navigator>

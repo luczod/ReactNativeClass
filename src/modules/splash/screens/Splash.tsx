@@ -6,7 +6,7 @@ import { URL_USER } from '../../../shared/constants/urls';
 
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { ContainerSplash, ImagelogoSplash } from '../styles/splash.style';
-import { MenuUrl } from '../../../shared/enums/MuneUrl.enum';
+import { MenuUrl } from '../../../shared/enums/MenuUrl.enum';
 import { useUserReducer } from '../../../store/reducers/useReducer/useUserReducer';
 import { UserType } from '../../../shared/types/userType';
 import { getAuthorizationToken } from '../../../shared/functions/connection/auth';
