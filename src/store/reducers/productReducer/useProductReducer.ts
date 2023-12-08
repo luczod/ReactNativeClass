@@ -17,9 +17,19 @@ export const useProductReducer = () => {
     dispatch(setSearchProductsAction(currentProducts));
   };
 
+  const insertSearchProducts = (currentProducts: PaginationType<ProductType[]>) => {
+    dispatch(
+      setSearchProductsAction({
+        ...currentProducts,
+        data: [...(searchProducts?.data || []), ...currentProducts.data],
+      }),
+    );
+  };
+
   return {
     products,
     searchProducts,
+    insertSearchProducts,
     setProducts,
     setSearchProducts,
   };

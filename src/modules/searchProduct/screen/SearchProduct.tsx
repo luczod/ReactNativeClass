@@ -10,9 +10,16 @@ import { PaginationType } from '../../../shared/types/paginationType';
 import { ProductType } from '../../../shared/types/productType';
 import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import Input from '../../../shared/components/input/Input';
-import { NativeSyntheticEvent, ScrollView, TextInputChangeEventData } from 'react-native';
-import { DivInput } from '../../home/styles/home.styles';
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  TextInputChangeEventData,
+} from 'react-native';
 import { ProductThumbnail } from '../../../productThumbnail/ProductThumbnail';
+import { LoadingDiv, SearchProductDiv, SearchTabScrollDiv } from '../styles/searchProduct.style';
+import { ActivityIndicatorButton } from '../../../shared/components/button/button.style';
+import { theme } from '../../../shared/themes/theme';
 
 export type SearchProductNavigationProp = NativeStackNavigationProp<
   Record<string, SearchProductParams>
@@ -23,12 +30,13 @@ export interface SearchProductParams {
 }
 
 function SearchProduct() {
-  const { searchProducts, setSearchProducts } = useProductReducer();
+  const { searchProducts, setSearchProducts, insertSearchProducts } = useProductReducer();
   const { params } = useRoute<RouteProp<Record<string, SearchProductParams>>>();
-  const { request } = useRequest();
+  const { request, loading } = useRequest();
   const [value, setValue] = useState(params?.search || '');
 
   useEffect(() => {
+    setSearchProducts(undefined);
     if (value) {
       request<PaginationType<ProductType[]>>({
         url: `${URL_PRODUCT_PAGE}?search=${value}`,
@@ -41,25 +49,49 @@ function SearchProduct() {
 
   searchProducts?.data.length > 0 && console.log(searchProducts.meta);
 
-  const handleOnChangeSearch = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+  function handleOnChangeSearch(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setValue(event.nativeEvent.text);
     console.log(value);
-  };
+  }
+
+  function findNewPage() {
+    if (searchProducts && searchProducts.meta.currentPage < searchProducts.meta.totalPages) {
+      request<PaginationType<ProductType[]>>({
+        url: `${URL_PRODUCT_PAGE}?search=${value}&page=${searchProducts.meta.currentPage + 1}`,
+        method: MethodEnum.GET,
+        saveGlobal: insertSearchProducts,
+      });
+      console.log(
+        `${URL_PRODUCT_PAGE}?search=${value}&page=${searchProducts.meta.currentPage + 1}`,
+      );
+    }
+  }
+
+  function handleScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+    const isEndScroll = contentOffset.y >= contentSize.height - layoutMeasurement.height;
+
+    if (isEndScroll && !loading) {
+      findNewPage();
+    }
+  }
 
   return (
-    <>
-      <DivInput>
-        <Input value={value} onChange={handleOnChangeSearch} searchType />
-      </DivInput>
+    <SearchProductDiv>
+      <Input value={value} onChange={handleOnChangeSearch} searchType />
       {searchProducts?.data.length > 0 && (
-        <ScrollView>
-          {searchProducts.data.map((product) => (
-            <ProductThumbnail key={product.id} product={product} />
-          ))}
+        <ScrollView onScroll={handleScroll}>
+          <SearchTabScrollDiv>
+            {searchProducts.data.map((product) => (
+              <ProductThumbnail key={product.id} margin="4px" product={product} />
+            ))}
+          </SearchTabScrollDiv>
         </ScrollView>
       )}
-      <Text>vazio</Text>
-    </>
+      <LoadingDiv>
+        {loading && <ActivityIndicatorButton size={50} color={theme.colors.mainTheme.primary} />}
+      </LoadingDiv>
+    </SearchProductDiv>
   );
 }
 

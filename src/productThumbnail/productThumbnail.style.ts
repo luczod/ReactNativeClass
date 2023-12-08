@@ -6,9 +6,9 @@ interface ContainerProps {
 }
 
 export const ProductThumbnailContaienr = styled.TouchableOpacity<ContainerProps>`
-  height: 172px;
+  height: 240px;
   border-radius: 8px;
-  width: 120px;
+  width: 170px;
   border: 1px solid ${theme.colors.grayTheme.gray80};
   padding: 4px;
 
@@ -17,13 +17,13 @@ export const ProductThumbnailContaienr = styled.TouchableOpacity<ContainerProps>
 
 export const ProductImg = styled.Image`
   width: 100%;
-  height: 70px;
+  height: 145px;
   border-radius: 8px;
   margin-bottom: 2px;
 `;
 
 export const ProductInsertCart = styled.TouchableOpacity`
-  width: 118px;
+  width: 168px;
   height: 32px;
   border-bottom-right-radius: 7px;
   border-bottom-left-radius: 7px;

@@ -29,17 +29,17 @@ export default function Home() {
     });
   }, []);
 
-  const handleGoToProduct = () => {
+  function handleGoToProduct() {
     if (search) {
       navigate(MenuUrl.SEARCH_PRODUCT, {
         search,
       });
     }
-  };
+  }
 
-  const handleOnChangeSearch = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+  function handleOnChangeSearch(event: NativeSyntheticEvent<TextInputChangeEventData>) {
     setSearch(event.nativeEvent.text);
-  };
+  }
 
   return (
     <View>
