@@ -1,6 +1,7 @@
 import { FlatList, NativeSyntheticEvent, TextInputChangeEventData, View } from 'react-native';
 import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { SearchProductNavigationProp } from '../../searchProduct/screen/SearchProduct';
+import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 
 import { useRequest } from '../../../shared/hooks/useRequest';
@@ -16,7 +17,7 @@ import { MenuUrl } from '../../../shared/enums/MenuUrl.enum';
 
 export default function Home() {
   const [search, setSearch] = useState('');
-  const { navigate } = useNavigation<NavigationProp<ParamListBase>>();
+  const { navigate } = useNavigation<SearchProductNavigationProp>();
   const { request } = useRequest();
   const { products, setProducts } = useProductReducer();
 
@@ -30,7 +31,9 @@ export default function Home() {
 
   const handleGoToProduct = () => {
     if (search) {
-      navigate(MenuUrl.SEARCH_PRODUCT);
+      navigate(MenuUrl.SEARCH_PRODUCT, {
+        search,
+      });
     }
   };
 
@@ -51,7 +54,7 @@ export default function Home() {
       </DivInput>
       <FlatList
         horizontal
-        data={products}
+        data={products.slice(38)}
         renderItem={({ item }) => (
           <ProductThumbnail key={item.id} margin="0px 8px" product={item} />
         )}
