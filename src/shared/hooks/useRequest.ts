@@ -9,7 +9,7 @@ import { RequestLogin } from '../types/requestLogin';
 import { ReturnLogin } from '../types/returnLogin';
 import { useUserReducer } from '../../store/reducers/useReducer/useUserReducer';
 import { MenuUrl } from '../enums/MenuUrl.enum';
-import { setAuthorizatinToken } from '../functions/connection/auth';
+import { setAuthorizationToken } from '../functions/connection/auth';
 import { URL_AUTH } from '../constants/urls';
 
 interface requestProps<T, B = unknown> {
@@ -67,7 +67,7 @@ export const useRequest = () => {
 
     await connectionAPIPost<ReturnLogin>(URL_AUTH, body)
       .then((result) => {
-        setAuthorizatinToken(result.accessToken);
+        setAuthorizationToken(result.accessToken);
         setUser(result.user);
         reset({
           index: 0,

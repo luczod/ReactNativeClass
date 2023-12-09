@@ -5,5 +5,4 @@ export const setItemStorage = async (key: string, value: string) => {
 };
 
 export const getItemStorage = async (key: string) => AsyncStorage.getItem(key).catch(() => '');
-export const removeItemStorage = async (key: string) =>
-  AsyncStorage.removeItem(key).catch(() => '');
+export const removeItemStorage = async (key: string) => AsyncStorage.removeItem(key).catch();

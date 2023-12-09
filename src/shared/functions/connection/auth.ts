@@ -1,14 +1,14 @@
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
-import { AUTHORIZATIN_KEY } from '../../constants/authorizationConst';
+import { AUTHORIZATION_KEY } from '../../constants/authorizationConst';
 import { MenuUrl } from '../../enums/MenuUrl.enum';
 import { getItemStorage, removeItemStorage, setItemStorage } from '../storageProxy';
 
-export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATIN_KEY);
+export const unsetAuthorizationToken = () => removeItemStorage(AUTHORIZATION_KEY);
 
-export const setAuthorizatinToken = async (token: string) =>
-  setItemStorage(AUTHORIZATIN_KEY, token);
+export const setAuthorizationToken = async (token: string) =>
+  setItemStorage(AUTHORIZATION_KEY, token);
 
-export const getAuthorizationToken = async () => getItemStorage(AUTHORIZATIN_KEY);
+export const getAuthorizationToken = async () => getItemStorage(AUTHORIZATION_KEY);
 
 export const logout = (navigate: NavigationProp<ParamListBase>) => {
   unsetAuthorizationToken();
